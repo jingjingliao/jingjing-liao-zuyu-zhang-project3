@@ -1,0 +1,42 @@
+form > .textbox {
+  outline: 0;
+  height: 50px;
+  width: 300px;
+  line-height: 42px;
+  margin-top: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #212121;
+  border: 0;
+  border-radius: 4px;
+}
+
+form > .textbox:focus {
+  outline: 0;
+  background-color: #fff;
+}
+
+form > .button {
+  outline: 0;
+  background: none;
+  background-color: rgba(38, 50, 56, 0.8);
+  height: 50px;
+  width: 100px;
+  text-align: center;
+  line-height: 42px;
+  margin-left: 20px;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.4s ease;
+  border-radius: 4px;
+}
+
+form > .button:hover {
+  background-color: #776bcc;
+}
+
+.nav-img {
+  margin-top: 50px;
+  width: 300px;
+}
