@@ -1,23 +1,17 @@
-form > .textbox {
-  outline: 0;
-  height: 50px;
-  width: 300px;
-  line-height: 42px;
-  margin-top: 50px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #212121;
-  border: 0;
+#homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#homepage img {
+  height: 300px;
+  width: 500px;
   border-radius: 4px;
 }
 
-form > .textbox:focus {
-  outline: 0;
-  background-color: #fff;
-}
-
-form > .button {
-  outline: 0;
-  background: none;
+#homepage button {
   background-color: rgba(38, 50, 56, 0.8);
   height: 50px;
   width: 100px;
@@ -26,17 +20,27 @@ form > .button {
   margin-left: 20px;
   border: 0;
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   transition: background-color 0.4s ease;
   border-radius: 4px;
 }
 
-form > .button:hover {
-  background-color: #776bcc;
+#homepage .textbox {
+  outline: 0;
+  height: 50px;
+  width: 300px;
+  line-height: 42px;
+  margin-top: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #212121;
+  border: 0;
+  font-size: 20px;
+  border-radius: 4px;
+  margin-bottom: 40px;
 }
 
-.nav-img {
-  margin-top: 50px;
-  width: 300px;
+
+button:hover {
+  background-color: #776bcc;
 }

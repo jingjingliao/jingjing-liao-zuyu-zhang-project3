@@ -1,0 +1,25 @@
+.card {
+  position: relative;
+  text-align: left;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#jobDetails img {
+  height: 250px;
+  width: 500px;
+  border-radius: 4px;
+}
+
+#jobDetails .card-title {
+  font-size: 30px;
+}
+
+#jobDetails .card-text {
+  font-size: 20px;
+}
+
+.card-title:hover {
+  color: royalblue;
+  font-weight: bold;
+}
