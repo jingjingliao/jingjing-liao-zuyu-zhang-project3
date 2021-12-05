@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", jobBoard);
+app.use("/job", jobBoard);
 
 app.listen(8000, function () {
   console.log("Starting server!");

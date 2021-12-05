@@ -13,7 +13,7 @@ export default function JobSearch() {
 
   function jobSearchResults() {
     axios
-      .get("http://localhost:8000/find/" + jobTitle)
+      .get("http://localhost:8000/job/find/" + jobTitle)
       .then((response) => {
         setJob(response.data);
       })

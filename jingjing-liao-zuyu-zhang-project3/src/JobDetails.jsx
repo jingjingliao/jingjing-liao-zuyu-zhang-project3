@@ -13,8 +13,6 @@ export default function () {
       .catch((error) => console.log("No job found"));
   }
 
-  // debugger;
-
   useEffect(findJobNameDetails, []);
   return (
     <div>

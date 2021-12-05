@@ -52,20 +52,14 @@ router.get("/find/:jobTitle", function (request, response) {
 //   return res.send(foundJobs);
 // });
 
-router.get("/job/:jobId", function (request, response) {
+router.get("/:jobId", function (request, response) {
   return JobAccessor.findJobById(request.params.jobId)
     .then((jobResponse) => response.status(200).send(jobResponse))
     .catch((error) => response.status(400).send(error));
 });
 
-router.delete("/job/:jobId", function (request, response) {
+router.delete("/:jobId", function (request, response) {
   return JobAccessor.deleteJobById(request.params.jobId)
-    .then((jobResponse) => response.status(200).send(jobResponse))
-    .catch((error) => response.status(400).send(error));
-});
-
-router.delete("/job/deleteAll", function (request, response) {
-  return JobAccessor.deleteAll()
     .then((jobResponse) => response.status(200).send(jobResponse))
     .catch((error) => response.status(400).send(error));
 });
