@@ -7,13 +7,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 export default function JobSearch() {
-  const jobName = useParams().jobName;
+  const jobTitle = useParams().jobTitle;
   const [jobs, setJob] = useState([{}]);
   const [errorMsg, setError] = useState(null);
 
   function jobSearchResults() {
     axios
-      .get("http://localhost:8000/find/" + jobName)
+      .get("http://localhost:8000/find/" + jobTitle)
       .then((response) => {
         setJob(response.data);
       })
@@ -30,14 +30,14 @@ export default function JobSearch() {
       {jobs.map((job) => (
         <div class="card">
           <div class="card-content">
-            <span class="card-title"> {job.JobTitle}</span>
+            <span class="card-title"> {job.jobTitle}</span>
             <p class="card-text">
-              {job.Location}
-              <p>{job.CompanyName}</p>
+              {job.location}
+              <p>{job.companyName}</p>
             </p>
 
             <span class="card-link">
-              <Link to={"/job/" + job.JobID}>More Detals</Link>
+              <Link to={"/job/" + job._id}>More Detals</Link>
             </span>
           </div>
           <img src="https://images.creativemarket.com/0.1.0/ps/5261195/910/607/m1/fpnw/wm0/job-search-.jpg?1540456875&s=cc4077264458791bd7f44a0a1b4b40b4&fmt=webp" />

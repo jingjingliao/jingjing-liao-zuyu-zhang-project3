@@ -8,6 +8,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import JobDetails from "./JobDetails";
 import HomePage from "./HomePage";
+import JobCreate from "./JobCreate";
 
 ReactDOM.render(
   <Router>
@@ -17,8 +18,9 @@ ReactDOM.render(
       <Route path="/" element={<HomePage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
-      <Route path="/find/:jobName" element={<JobSearch />} />
+      <Route path="/find/:jobTitle" element={<JobSearch />} />
       <Route path="/job/:jobId" element={<JobDetails />} />
+      <Route path="/job/create" element={<JobCreate />} />
     </Routes>
   </Router>,
   document.getElementById("root")

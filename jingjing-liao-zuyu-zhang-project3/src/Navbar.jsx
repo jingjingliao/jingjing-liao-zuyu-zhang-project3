@@ -21,6 +21,9 @@ export default function Navbar() {
           <li>
             <Link to="/Signup">Sign up </Link>
           </li>
+          <li>
+            <Link to="/job/create">Job Create </Link>
+          </li>
         </ul>
       </header>
     </div>
