@@ -30,27 +30,15 @@ router.get("/findAll", function (request, response) {
     .catch((error) => response.status(400).send(error));
 });
 
-// Need to be modified
-router.get("/find/:jobTitle", function (request, response) {
-  const jobTitle = request.params.jobTitle;
-  return JobAccessor.findJobByJobTitle(jobTitle)
-    .then((jobResponse) => response.status(200).send(jobResponse))
-    .catch((error) => response.status(400).send(error));
+router.get("/find/:jobTitle", async function (request, response) {
+  try {
+    const jobTitle = request.params.jobTitle;
+    const jobResponse = await JobAccessor.findJobByJobTitle(jobTitle);
+    response.status(200).send(jobResponse);
+  } catch (err) {
+    response.status(400).send(error);
+  }
 });
-
-// router.get("/find/:jobName", function (req, res) {
-//   const jobQuery = req.params.jobName;
-//   let foundJobs = [];
-//   for (let job of jobs) {
-//     if (job.JobTitle.toLowerCase().includes(jobQuery.toLowerCase())) {
-//       foundJobs.push(job);
-//     }
-//   }
-//   if (!foundJobs) {
-//     res.send("No job matches");
-//   }
-//   return res.send(foundJobs);
-// });
 
 router.get("/:jobId", function (request, response) {
   return JobAccessor.findJobById(request.params.jobId)

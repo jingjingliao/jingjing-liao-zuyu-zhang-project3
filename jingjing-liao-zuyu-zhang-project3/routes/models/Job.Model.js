@@ -11,8 +11,10 @@ function getAllJob() {
   return JobModel.find().exec();
 }
 
-function findJobByJobTitle(jobTitle) {
-  return JobModel.find({ jobTitle: jobTitle }).exec();
+async function findJobByJobTitle(jobTitle) {
+  return await JobModel.find({
+    jobTitle: { $regex: jobTitle, $options: "i" },
+  }).exec();
 }
 
 function findJobById(jobId) {
@@ -27,7 +29,6 @@ function deleteAll() {
   return JobModel.deleteAll().exec();
 }
 
-// Make sure to export a function after you create it!
 module.exports = {
   insertJob,
   getAllJob,
