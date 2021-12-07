@@ -1,15 +1,14 @@
 const express = require("express");
+const app = express();
 const jobBoard = require("./routes/jobBoard");
+const user = require("./routes/user");
 const cors = require("cors");
 const mongoose = require("mongoose");
+// const path = require("path");
 
-const app = express();
-
-// const mongoDBEndpoint =
-//   "mongodb+srv://jingjing:Cherryjingjing1!2@@jobboardproject.uunuw.mongodb.net/pokemon_app?retryWrites=true&w=majority";
 
 const mongoDBEndpoint =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1/jobSearch_app";
+  process.env.MONGODB_URI || "mongodb://127.0.0.1/user_app";
 
 mongoose.connect(mongoDBEndpoint, { useNewUrlParser: true });
 
@@ -20,12 +19,19 @@ mongoDB.on(
   console.error.bind(console, "Error connecting to MongoDB:")
 );
 
-app.use(cors());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors());
 app.use("/job", jobBoard);
+app.use("/user", user);
+
+// app.use(express.static(path.join(__dirname, 'build')));
+
+// app.get('*', function (req, res) {
+//     console.log("received request");
+//     res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 app.listen(8000, function () {
   console.log("Starting server!");
