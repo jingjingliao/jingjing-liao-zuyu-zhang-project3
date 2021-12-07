@@ -9,7 +9,7 @@ import { useParams } from "react-router";
 export default function JobSearch() {
   const jobTitle = useParams().jobTitle;
   const [jobs, setJob] = useState([{}]);
-  const [errorMsg, setError] = useState(null);
+  const [errorMsg, setError] = useState("");
 
   function jobSearchResults() {
     axios
@@ -25,7 +25,7 @@ export default function JobSearch() {
 
   return (
     <div class="container" id="jobSearch">
-      {/* <div class="errorMsg">{errorMsg}</div> */}
+      <div class="errorMsg">{errorMsg}</div>
 
       {jobs.map((job) => (
         <div class="card">

@@ -25,8 +25,8 @@ function deleteJobById(jobId) {
   return JobModel.deleteOne({ jobId: jobId }).exec();
 }
 
-function deleteAll() {
-  return JobModel.deleteAll().exec();
+function updateById(jobId, newJobs) {
+  return JobModel.findOneAndUpdate({ jobId }, { ...newJobs });
 }
 
 module.exports = {
@@ -35,5 +35,5 @@ module.exports = {
   findJobByJobTitle,
   findJobById,
   deleteJobById,
-  deleteAll,
+  updateById,
 };

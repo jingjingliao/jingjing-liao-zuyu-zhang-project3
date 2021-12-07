@@ -23,3 +23,54 @@
   color: royalblue;
   font-weight: bold;
 }
+
+#jobDetails .card-button {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+#jobDetails .like {
+  margin-right: 30px;
+}
+
+#jobDetails .edit {
+  margin-right: 30px;
+}
+
+.like,
+.edit,
+.delete {
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  background-color: whitesmoke;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.like:hover {
+  color: black;
+  background-color: #c7c5f4;
+}
+
+.edit:hover {
+  color: black;
+  background-color: #c7c5f4;
+}
+
+.delete:hover {
+  color: black;
+  background-color: #c7c5f4;
+}
+
+.deleteMsg {
+  font-size: 30px;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

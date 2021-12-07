@@ -1,28 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const JobAccessor = require("./models/Job.Model");
-// const PokemonAccessor = require("./models/Pokemon.Model");
-
-// const jobs = [
-//   {
-//     JobID: 1,
-//     JobTitle: "Software Engineer",
-//     Location: "Bellevue",
-//     CompanyName: "Company1",
-//   },
-//   {
-//     JobID: 2,
-//     JobTitle: "soft Drink Seller",
-//     Location: "Redmond",
-//     CompanyName: "Company2",
-//   },
-//   {
-//     JobID: 3,
-//     JobTitle: "Software Engineer",
-//     Location: "Seattle",
-//     CompanyName: "Company3",
-//   },
-// ];
 
 router.get("/findAll", function (request, response) {
   return JobAccessor.getAllJob()
@@ -42,6 +20,20 @@ router.get("/find/:jobTitle", async function (request, response) {
 
 router.get("/:jobId", function (request, response) {
   return JobAccessor.findJobById(request.params.jobId)
+    .then((jobResponse) => response.status(200).send(jobResponse))
+    .catch((error) => response.status(400).send(error));
+});
+
+router.put("/:jobId", function (request, response) {
+  // const {
+  //   jobTitle,
+  //   companyName,
+  //   location,
+  //   description,
+  //   emailContact,
+  //   companyWebsite,
+  // } = request.body;
+  return JobAccessor.updateById(request.params.jobId, request.body)
     .then((jobResponse) => response.status(200).send(jobResponse))
     .catch((error) => response.status(400).send(error));
 });

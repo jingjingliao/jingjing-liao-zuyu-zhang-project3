@@ -77,3 +77,6 @@ https://www.youtube.com/watch?v=aibtHnbeuio
 
 https://www.youtube.com/watch?v=8aGhZQkoFbQ&vl=en
 
+https://github.com/isazyzhang/jingjing-liao-zuyu-zhang-project-2
+
+https://battleship-web-game.herokuapp.com/
