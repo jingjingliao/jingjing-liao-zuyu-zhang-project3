@@ -2,6 +2,7 @@ import "./css/JobCreate.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
+import { set } from "mongoose";
 
 export default function JobCreate() {
   const [newJob, setNewJob] = useState({
@@ -70,7 +71,7 @@ export default function JobCreate() {
               setNewJob({ ...newJob, companyWebsite: e.target.value })
             }
           />
-          <button>submit</button>
+          <button>Submit</button>
         </form>
       </div>
     </div>

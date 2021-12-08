@@ -9,6 +9,7 @@ import Signup from "./Signup";
 import JobDetails from "./JobDetails";
 import HomePage from "./HomePage";
 import JobCreate from "./JobCreate";
+import JobEdit from "./JobEdit";
 
 ReactDOM.render(
   <Router>
@@ -20,6 +21,7 @@ ReactDOM.render(
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/find/:jobTitle" element={<JobSearch />} />
       <Route path="/job/:jobId" element={<JobDetails />} />
+      <Route path="/job/edit/:jobId" element={<JobEdit />} />
       <Route path="/job/create" element={<JobCreate />} />
     </Routes>
   </Router>,
