@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const UserAccessor = require("./models/User.Model");
+const alert = require("alert");
+// const jwt = require('jsonwebtoken');
+// const auth_middleware = require('./auth_middleware.js')
 
 router.get("/findAll", function(request, response) {
     return UserAccessor.getAllUsers()
@@ -8,27 +11,35 @@ router.get("/findAll", function(request, response) {
     .catch(error => response.status(200).send(error));
 });
 
-router.get("/authenticate", (request, response) => {
+// router.get('/whoIsLoggedIn', auth_middleware, function(request, response) {
+//     const username = request.session.username;
+//     return response.send(username);
+// });
+
+router.post("/authenticate", (request, response) => {
     let {username, password} = request.body;
-    password = JSON.stringify(password);
-    if (!username) {
-        return response.status(422).send("Please input your username.");
+    if (!username || !password) {
+        alert("Please input both your username and password");
+        return response.status(422).send("Username and/or password not provided");
     }
-    if (!password) {
-        return response.status(422).send("Please input your password");
-    }
+    // password = JSON.stringify(password);
     return UserAccessor.findUserByUsername(username)
     .then((userResponse) => {
         if (!userResponse) {
+            alert("No account found with this username & password combination. Please check again or click on link below to register.");
             return response.status(404).send("No user found with this username");
         }
         if (userResponse.password === password) {
+            // connect-flash and redirect to homepage
+            alert("Welcome back, " + username + "!");
+            // request.session.username = username;
             return response.status(200).send("You are logged in!");
         } else {
+            alert("There is an error in your password. Please check and try again.");
             return response.status(404).send("There is an error in your password. Please check and try again.");
         }
-    })
-})
+    });
+});
 
 router.get("/:username", (request, response) => {
     const username = request.params.username;
@@ -45,19 +56,34 @@ router.get("/:username", (request, response) => {
     .catch((error) => response.status(500).send("Issue getting user"));
 });
 
-router.post('/signup', function(req, res) {
-    const { username, password } = req.body;
-    if (!username) {
-        alert("Please input a username.");
+router.post('/signup', function(request, response) {
+    const { username, password, validation} = request.body;
+    if (!username || !password || !validation) {
+        alert("Please fill in all fields");
+        return response.status(422).send("Sign up failed. Missing data.");
     }
-    if (!password) {
-        alert("Please input a password");
-    }
-    return UserAccessor.insertUser({username, password})
-        .then((userResponse) => {
-                return res.status(200).send(userResponse);
+    // check if username already exists
+    return UserAccessor.findUserByUsername(username).
+        then((userResponse) => {
+            if (userResponse) {
+                alert("Username is already taken");
+                return response.status(422).send("Sign up failed. Username is taken");
+            } else {
+                // check if passwords match
+                if (password !== validation) {
+                    alert("Passwords don't match.");
+                    return response.status(422).send("Sign up failed. Passwords don't match");
+                }
+                return UserAccessor.insertUser({username, password, validation})
+                .then((userResponse) => {
+                    alert("Account created. Welcome, " + username + "!");
+                    //TODO: redirect to homepage
+                    return response.status(200).send(userResponse);
+                })
+                .catch(error => response.status(400).send(error))
+            }
         })
-        .catch(error => res.status(400).send(error))
+        .catch(error => response.status(400).send(error));
 });
 
 
