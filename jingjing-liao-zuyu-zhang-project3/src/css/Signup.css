@@ -1,11 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.signup {
+  width: 900px;
+  padding: 2% 0 0;
+  margin: auto;
+}
 
 .form {
   position: relative;
   z-index: 1;
   background: #ffffff;
-  max-width: 700px;
+  max-width: 500px;
   margin: 20px auto 100px;
   padding: 45px;
   text-align: center;
