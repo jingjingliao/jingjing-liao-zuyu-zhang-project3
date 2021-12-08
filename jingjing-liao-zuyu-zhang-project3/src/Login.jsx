@@ -3,17 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
 
-export default function Login() {
+export default function() {
   const [UserLogginIn, setUserLogginIn] = useState({
     username: "",
     password: ""
   });
-
-  function checkUserTryingToLogIn() {
-    axios.get("http://localhost:8000/user/authenticate")
-    .then(response => setUserLogginIn(response.data))
-    .catch(error => console.error(error))
-  }
 
   return (
     <div class="login-page">
@@ -42,7 +36,9 @@ export default function Login() {
             )
           }} type="password"/>
           <button onClick={() => {
-            checkUserTryingToLogIn();
+                axios.post("http://localhost:8000/user/authenticate", UserLogginIn)
+                .then(response => setUserLogginIn(response.data))
+                .catch(error => console.log(error))
           }}>Login</button>
           <p class="message">
             Not registered? 

@@ -14,7 +14,6 @@ ReactDOM.render(
   <Router>
     <Navbar />
     <Routes>
-      {/* <Route path="/" element={<JobSearch />}></Route> */}
       <Route path="/" element={<HomePage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
