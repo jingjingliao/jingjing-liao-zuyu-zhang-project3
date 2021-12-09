@@ -9,11 +9,12 @@ export default function () {
     password: "",
     validation: "",
   });
+
+  
   return (
     <div class="signup">
       <div class="form">
         <h3>Create Your New Account: </h3>
-        {/* <h5>Username: </h5> */}
         <input
           type="text"
           placeholder="Username"
@@ -26,7 +27,6 @@ export default function () {
             });
           }}
         />
-        {/* <h5>Password: </h5> */}
         <input
           type="password"
           placeholder="Password"
@@ -39,7 +39,6 @@ export default function () {
             });
           }}
         />
-        {/* <h5>Re-Enter Password: </h5> */}
         <input
           type="password"
           placeholder="Re-Enter Password"

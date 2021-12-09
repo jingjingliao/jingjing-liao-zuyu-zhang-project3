@@ -36,7 +36,6 @@ export default function () {
                 password: password,
               });
             }}
-            type="password"
           />
           <button
             onClick={() => {
