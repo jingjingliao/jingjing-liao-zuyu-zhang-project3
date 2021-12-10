@@ -1,8 +1,7 @@
 import "./css/JobEdit.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import axios, { Axios } from "axios";
-import { set } from "mongoose";
+import axios from "axios";
 import { useParams } from "react-router";
 
 export default function JobEdit() {

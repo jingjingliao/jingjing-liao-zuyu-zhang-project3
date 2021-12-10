@@ -1,29 +1,17 @@
 import "./css/Navbar.css";
-import * as ReactBootStrap from "react-bootstrap";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Login from "./Login";
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 export default function Navbar() {
-  // const user = null;
-
-  // const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [user, setUser] = useState(null);
-  // useEffect(() => {
-  //   const token = user?.token;
 
-  //   if (token) {
-  //     const decodedToken = decode(token);
-
-  //     if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-  //   }
-
-  //   setUser(JSON.parse(localStorage.getItem("profile")));
-  // }, [location]);
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("currentUser")));
+  }, []);
 
   const logout = () => {
     <Link to="/"></Link>;
-    setUser = null;
+    setUser(null);
     localStorage.clear();
   };
 
@@ -41,7 +29,7 @@ export default function Navbar() {
 
           {user ? (
             <div>
-              <li>{user}</li>
+              <Link to="/">{user} </Link>
               <li>
                 <Link to="/job/create">Job Create </Link>
               </li>
@@ -49,15 +37,15 @@ export default function Navbar() {
                 <Link to="/job/favorite">Fav Jobs </Link>
               </li>
               <li>
-                <Link to="/">Logout </Link>
+                <Link to="/" onClick={logout}>
+                  Logout{" "}
+                </Link>
               </li>
             </div>
           ) : (
             <div>
               <li>
-                <Link to="/login" onClick={logout}>
-                  Login{" "}
-                </Link>
+                <Link to="/login">Login </Link>
               </li>
               <li>
                 <Link to="/Signup">Sign up </Link>

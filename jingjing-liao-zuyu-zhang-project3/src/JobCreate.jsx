@@ -1,8 +1,6 @@
 import "./css/JobCreate.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios, { Axios } from "axios";
-import { set } from "mongoose";
 
 export default function JobCreate() {
   const [newJob, setNewJob] = useState({

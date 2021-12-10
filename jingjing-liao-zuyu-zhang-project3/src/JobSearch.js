@@ -2,7 +2,6 @@
 import axios, { Axios } from "axios";
 import "./css/JobSearch.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import JobDetails from "./JobDetails";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
