@@ -32,8 +32,9 @@ router.post("/authenticate", (request, response) => {
     }
     if (userResponse.password === password) {
       request.session.username = username;
+
       alert("Welcome back, " + username + "!");
-      return response.status(200).send({ username });
+      return response.status(200).send({ userResponse });
     } else {
       alert("There is an error in your password. Please check and try again.");
       return response
@@ -80,10 +81,10 @@ router.post("/signup", function (request, response) {
             .status(422)
             .send("Sign up failed. Passwords don't match");
         }
+
         return UserAccessor.insertUser({ username, password, validation })
           .then((userResponse) => {
             alert("Account created. Welcome, " + username + "!");
-            //TODO: redirect to homepage
             return response.status(200).send(userResponse);
           })
           .catch((error) => response.status(400).send(error));
