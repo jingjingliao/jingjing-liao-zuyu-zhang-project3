@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Image from "./images/JobSearch1.jpg";
 
 import { useParams } from "react-router";
 import "./css/JobDetails.css";
@@ -40,11 +41,17 @@ export default function () {
             <div>Company Name: {job.companyName}</div>
             <div>Location: {job.location}</div>
             <div>Description: {job.description}</div>
-            <div>Employer Email Contact: {job.emailContact}</div>
-            <div>CompanyWebsite: {job.companyWebsite}</div>
-          </div>
 
-          {/* <div class="deleteMsg">{jobDeleteMsg}</div> */}
+            <div>
+              Employer Email Contact: <a href={job.emailContact}>Email</a>
+            </div>
+            {job.companyWebsite ? (
+              <div>CompanyWebsite: {job.companyWebsite}</div>
+            ) : (
+              <div></div>
+            )}
+            <div>Posting Date: {job.createAt}</div>
+          </div>
 
           <div class="card-button">
             <div class="like">Like</div>
@@ -64,7 +71,7 @@ export default function () {
             </div> */}
           </div>
         </div>
-        <img src="https://images.creativemarket.com/0.1.0/ps/5261195/910/607/m1/fpnw/wm0/job-search-.jpg?1540456875&s=cc4077264458791bd7f44a0a1b4b40b4&fmt=webp" />
+        <img src={Image} />
       </div>
     </div>
   );

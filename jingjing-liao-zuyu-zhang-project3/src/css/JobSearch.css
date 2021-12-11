@@ -74,3 +74,11 @@
   color: black;
   background-color: #c7c5f4;
 }
+
+#jobSearch .errorMsg {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  color: blue;
+  margin-top: 20px;
+}

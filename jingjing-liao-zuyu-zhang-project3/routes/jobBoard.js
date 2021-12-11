@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const JobAccessor = require("./models/Job.Model");
+const alert = require("alert");
+const auth_middleware = require("./auth_middleware");
 
 router.get("/findAll", function (request, response) {
   return JobAccessor.getAllJob()
@@ -12,6 +14,7 @@ router.get("/find/:jobTitle", async function (request, response) {
   try {
     const jobTitle = request.params.jobTitle;
     const jobResponse = await JobAccessor.findJobByJobTitle(jobTitle);
+
     response.status(200).send(jobResponse);
   } catch (err) {
     response.status(400).send(error);
@@ -39,6 +42,9 @@ router.put("/edit/:jobId", function (request, response) {
   } = request.body;
 
   if (!jobTitle || !companyName || !location || !description || !emailContact) {
+    alert(
+      "Except Company Website, all other information should be required when editting!"
+    );
     return response.status(422).send("Missing data");
   }
 
@@ -55,8 +61,12 @@ router.post("/create", (request, response) => {
     description,
     emailContact,
     companyWebsite,
+    creator,
   } = request.body;
   if (!jobTitle || !companyName || !location || !description || !emailContact) {
+    alert(
+      "Except Company Website, all other information should be required when creating!"
+    );
     return response.status(422).send("Missing data");
   }
 

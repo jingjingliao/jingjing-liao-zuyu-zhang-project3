@@ -9,7 +9,12 @@ exports.JobSchema = new Schema(
     emailContact: String,
     companyWebsite: {
       type: String,
-      default: "Not Provided",
+      default: "",
+    },
+    creator: String,
+    createAt: {
+      type: Date,
+      default: new Date(),
     },
   },
   { collection: "jobs" }
