@@ -1,9 +1,9 @@
-// import { useState } from "react";
 import axios, { Axios } from "axios";
 import "./css/JobSearch.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Image from "./images/JobSearch1.jpg";
 
 export default function JobSearch() {
   const jobTitle = useParams().jobTitle;
@@ -14,10 +14,14 @@ export default function JobSearch() {
     axios
       .get("http://localhost:8000/job/find/" + jobTitle)
       .then((response) => {
-        setJob(response.data);
+        if (response.data.length !== 0) {
+          setJob(response.data);
+        } else {
+          setError("No Job matches your input!");
+        }
       })
       .catch((error) => {
-        setError("No Job matches your input");
+        setError("No Job matches your input!");
       });
   }
   useEffect(jobSearchResults, [{}]);
@@ -39,7 +43,7 @@ export default function JobSearch() {
               <Link to={"/job/" + job._id}>More Detals</Link>
             </span>
           </div>
-          <img src="https://images.creativemarket.com/0.1.0/ps/5261195/910/607/m1/fpnw/wm0/job-search-.jpg?1540456875&s=cc4077264458791bd7f44a0a1b4b40b4&fmt=webp" />
+          <img src={Image} />
         </div>
       ))}
     </div>

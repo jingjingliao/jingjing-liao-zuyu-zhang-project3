@@ -10,6 +10,7 @@ export default function JobCreate() {
     description: "",
     emailContact: "",
     companyWebsite: "",
+    creator: JSON.parse(localStorage.getItem("currentUser")),
   });
 
   function handleSubmit() {
