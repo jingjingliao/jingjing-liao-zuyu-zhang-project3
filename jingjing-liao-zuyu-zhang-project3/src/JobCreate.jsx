@@ -1,9 +1,10 @@
 import "./css/JobCreate.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios, { Axios } from "axios";
+import { useNavigate } from "react-router";
 
 export default function JobCreate() {
+  const navigate = useNavigate();
   const [newJob, setNewJob] = useState({
     jobTitle: "",
     companyName: "",
@@ -11,6 +12,7 @@ export default function JobCreate() {
     description: "",
     emailContact: "",
     companyWebsite: "",
+    creator: JSON.parse(localStorage.getItem("currentUser")),
   });
 
   function handleSubmit() {
@@ -70,7 +72,7 @@ export default function JobCreate() {
               setNewJob({ ...newJob, companyWebsite: e.target.value })
             }
           />
-          <button>submit</button>
+          <button>Submit</button>
         </form>
       </div>
     </div>

@@ -17,8 +17,8 @@ async function findJobByJobTitle(jobTitle) {
   }).exec();
 }
 
-function findJobById(jobId) {
-  return JobModel.findById(jobId).exec();
+async function findJobById(jobId) {
+  return await JobModel.findById(jobId).exec();
 }
 
 function deleteJobById(jobId) {
@@ -26,7 +26,7 @@ function deleteJobById(jobId) {
 }
 
 function updateById(jobId, newJobs) {
-  return JobModel.findOneAndUpdate({ jobId }, { ...newJobs });
+  return JobModel.findByIdAndUpdate(jobId, newJobs, { new: true });
 }
 
 module.exports = {

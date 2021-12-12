@@ -1,20 +1,40 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import Image from "./images/JobSearch1.jpg";
+import { useNavigate } from "react-router";
 import { useParams } from "react-router";
 import "./css/JobDetails.css";
 
 export default function () {
   const jobID = useParams().jobId;
+  const [jobInFav, changeJobFavState] = useState(false);
+  const navigate = useNavigate();
+
+  const [currentId, setCurrentId] = useState(null);
   const [job, setJob] = useState({});
   const [jobDeleteMsg, setJobDeleteMsg] = useState("");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [FavMessage, setFavMessage] = useState("");
+  const [favDeleteMessage, setFavDeleteMessage] = useState("");
+  
+
   function findJobNameDetails() {
     axios
       .get("http://localhost:8000/job/" + jobID)
       .then((response) => setJob(response.data))
       .catch((error) => console.log("No job found"));
   }
+
+  useEffect(findJobNameDetails, []);
+
+  function JobExistsInFavList() {
+    axios
+      .get("http://localhost:8000/user/existsInFavs/" + currentUser + "/" + jobID)
+      .then((response) => changeJobFavState(response.data))
+      .catch((error) => console.log("Failed to check"));
+  }
+  useEffect(JobExistsInFavList, []);
 
   function deleteJob() {
     axios
@@ -26,7 +46,27 @@ export default function () {
       .catch((error) => console.log("No job found"));
   }
 
-  useEffect(findJobNameDetails, []);
+  function AddToUsersFavorites() {
+    if (!currentUser) {
+      navigate("/login");
+    } else {
+      axios
+        .post("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
+        .then((response) => setFavMessage("Added job to your favorites!"), navigate("/job/" + jobID))
+        .catch((error) => console.log("Failed to add to Favorites"));
+    }
+  }
+
+  function RemoveFromUsersFavorites() {
+    if (!currentUser) {
+      navigate("/login")
+    } else {
+      axios
+        .delete("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
+        .then((response) => setFavDeleteMessage("Removed from your favorites!"), navigate("/job/" + jobID))
+        .catch((error) => console.log("Failed to remove from favorites"));
+    }
+  }
 
   return (
     <div>
@@ -37,21 +77,49 @@ export default function () {
             <div>Company Name: {job.companyName}</div>
             <div>Location: {job.location}</div>
             <div>Description: {job.description}</div>
-            <div>Employer Email Contact: {job.emailContact}</div>
-            <div>CompanyWebsite: {job.companyWebsite}</div>
+
+            <div>
+              Send Email: <a href={"mailto:" + job.emailContact} method="POST">{job.emailContact}</a>
+            </div>
+            {job.companyWebsite ? (
+              <div>
+                Company Website: <a href={"https://" + job.companyWebsite} target="_blank">{job.companyWebsite}</a>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            <div>Posting Date: {job.createAt}</div>
           </div>
 
-          <div class="deleteMsg">{jobDeleteMsg}</div>
-
           <div class="card-button">
-            <div class="like">Like</div>
-            <div class="edit">Edit</div>
-            <div class="delete" onClick={deleteJob}>
-              Delete
+            {jobInFav ? (
+              <div onClick={RemoveFromUsersFavorites} class="like">
+                Unfavorite
+                <div>
+                  {favDeleteMessage}
+                </div>
+              </div>
+            ) : (
+              <div onClick={AddToUsersFavorites} class="like">
+                Add to Favorites
+                <div>
+                  {FavMessage}
+                </div>
+              </div>
+            )}
+
+            <div class="edit">
+              <Link to={"/job/edit/" + jobID}>Edit</Link>
+            </div>
+
+            <div class="delete">
+              <Link onClick={deleteJob} to={"/"}>
+                Delete
+              </Link>
             </div>
           </div>
         </div>
-        <img src="https://images.creativemarket.com/0.1.0/ps/5261195/910/607/m1/fpnw/wm0/job-search-.jpg?1540456875&s=cc4077264458791bd7f44a0a1b4b40b4&fmt=webp" />
+        <img src={Image} />
       </div>
     </div>
   );

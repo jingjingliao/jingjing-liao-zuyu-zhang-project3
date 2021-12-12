@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./css/index.css";
 import Navbar from "./Navbar";
 import JobSearch from "./JobSearch";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -9,6 +9,8 @@ import Signup from "./Signup";
 import JobDetails from "./JobDetails";
 import HomePage from "./HomePage";
 import JobCreate from "./JobCreate";
+import JobEdit from "./JobEdit";
+import AllFavs from "./AllFavs";
 
 ReactDOM.render(
   <Router>
@@ -19,7 +21,9 @@ ReactDOM.render(
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/find/:jobTitle" element={<JobSearch />} />
       <Route path="/job/:jobId" element={<JobDetails />} />
+      <Route path="/job/edit/:jobId" element={<JobEdit />} />
       <Route path="/job/create" element={<JobCreate />} />
+      <Route path="/allFavs" element={<AllFavs />} />
     </Routes>
   </Router>,
   document.getElementById("root")

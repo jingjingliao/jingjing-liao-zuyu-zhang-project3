@@ -1,61 +1,69 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import "./css/Signup.css";
+import { useNavigate } from "react-router";
 
-export default function() {
+export default function () {
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    username: "",
+    password: "",
+    validation: "",
+  });
 
-    const [userData, setUserData] = useState({
-        username: "",
-        password: "",
-        validation: ""
-    });
-    return (
-        <div>
-            <div class="form">
-                <h3>Create Your New Account: </h3>
-                <h5>Username: </h5>
-                <input value={userData.username} onChange={(e) => {
-                    const username = e.target.value;
-                    setUserData(
-                        {
-                            ...userData,
-                            username: username
-                        }
-                    )
-                }}/>
-                <h5>Password: </h5>
-                <input value={userData.password} onChange={(e) => {
-                    const password = e.target.value;
-                    setUserData(
-                        {
-                            ...userData,
-                            password: password
-                        }
-                    )
-                }} type="password"/>
-                <h5>Re-Enter Password: </h5>
-                <input value={userData.validation} onChange={(e) => {
-                    const validation = e.target.value;
-                    setUserData(
-                        {
-                            ...userData,
-                            validation: validation
-                        }
-                    )
-                }} type="password"/>
-                <button
-                onClick={() => {
-                    axios.post("http://localhost:8000/user/signup", userData)
-                    .then(response => setUserData(response.data))
-                    .catch(error => console.log(error));
-                }}>
-                    Register
-                </button>
-                <p class="message">
-                    Already have an account?
-                    <Link to="/login">Sign in</Link>
-                </p>
-            </div>
-        </div>
-    )
+  function onRegister() {
+    axios
+      .post("http://localhost:8000/user/signup", userData)
+      .then((response) => setUserData(response.data), navigate("/"))
+      .catch((error) => console.log(error));
+  }
+
+  return (
+    <div class="signup">
+      <div class="form">
+        <h3>Create Your New Account: </h3>
+        <input
+          type="text"
+          placeholder="Username"
+          value={userData.username}
+          onChange={(e) => {
+            const username = e.target.value;
+            setUserData({
+              ...userData,
+              username: username,
+            });
+          }}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={userData.password}
+          onChange={(e) => {
+            const password = e.target.value;
+            setUserData({
+              ...userData,
+              password: password,
+            });
+          }}
+        />
+        <input
+          type="password"
+          placeholder="Re-Enter Password"
+          value={userData.validation}
+          onChange={(e) => {
+            const validation = e.target.value;
+            setUserData({
+              ...userData,
+              validation: validation,
+            });
+          }}
+        />
+        <button onClick={onRegister}>Register</button>
+        <p class="message">
+          Already have an account? <Link to="/login">Sign in</Link>
+        </p>
+      </div>
+    </div>
+  );
 }
