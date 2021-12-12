@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Image from "./images/JobSearch1.jpg";
+import Image from "./images/1.jpg";
 import { useNavigate } from "react-router";
 import FileBase64 from "react-file-base64";
 
@@ -73,21 +73,20 @@ export default function () {
           </div>
 
           <div class="card-button" onClick={AddToUsersFavorites}>
-            <div class="like">Like</div>
+            {currentUser === job.creator ? (
+              <div>
+                <span class="like">Like</span>
+                <Link class="edit" to={"/job/edit/" + jobID}>
+                  Edit
+                </Link>
 
-            <div class="edit">
-              <Link to={"/job/edit/" + jobID}>Edit</Link>
-            </div>
-
-            <div class="delete">
-              <Link onClick={deleteJob} to={"/"}>
-                Delete
-              </Link>
-            </div>
-
-            {/* <div class="delete" onClick={deleteJob}>
-              Delete
-            </div> */}
+                <Link class="delete" onClick={deleteJob} to={"/"}>
+                  Delete
+                </Link>
+              </div>
+            ) : (
+              <div class="like">Like</div>
+            )}
           </div>
         </div>
         <img src={Image} />
