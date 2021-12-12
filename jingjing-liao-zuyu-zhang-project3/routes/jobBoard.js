@@ -72,7 +72,6 @@ router.post("/create", (request, response) => {
     creator,
     companyIcon,
   } = request.body;
-  console.log(companyIcon);
   if (
     !jobTitle ||
     !companyName ||
