@@ -1,7 +1,11 @@
 import "./css/JobCreate.css";
 import React, { useState } from "react";
 import axios, { Axios } from "axios";
+<<<<<<< HEAD
 import { useNavigate } from "react-router";
+=======
+import FileBase64 from "react-file-base64";
+>>>>>>> 93f3e809c78f63f569486a3597d1def49a15f1e9
 
 export default function JobCreate() {
   const navigate = useNavigate();
@@ -12,10 +16,13 @@ export default function JobCreate() {
     description: "",
     emailContact: "",
     companyWebsite: "",
+    companyIcon: "",
     creator: JSON.parse(localStorage.getItem("currentUser")),
   });
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(newJob);
     axios
       .post("http://localhost:8000/job/create", newJob)
       .then((response) => {
@@ -28,6 +35,14 @@ export default function JobCreate() {
     <div class="job-create">
       <div class="form">
         <form class="create-form" onSubmit={handleSubmit}>
+          <FileBase64
+            class="custom-file-input"
+            type="file"
+            multiple={false}
+            onDone={({ base64 }) =>
+              setNewJob({ ...newJob, companyIcon: base64 })
+            }
+          />
           <input
             type="text"
             placeholder="Job Title"
@@ -72,6 +87,7 @@ export default function JobCreate() {
               setNewJob({ ...newJob, companyWebsite: e.target.value })
             }
           />
+
           <button>Submit</button>
         </form>
       </div>

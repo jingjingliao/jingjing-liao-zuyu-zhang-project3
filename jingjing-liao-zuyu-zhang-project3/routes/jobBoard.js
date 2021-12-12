@@ -56,9 +56,17 @@ router.put("/edit/:jobId", function (request, response) {
     description,
     emailContact,
     companyWebsite,
+    companyIcon,
   } = request.body;
 
-  if (!jobTitle || !companyName || !location || !description || !emailContact) {
+  if (
+    !jobTitle ||
+    !companyName ||
+    !location ||
+    !description ||
+    !emailContact ||
+    !companyIcon
+  ) {
     alert(
       "Except Company Website, all other information should be required when editting!"
     );
@@ -79,8 +87,16 @@ router.post("/create", (request, response) => {
     emailContact,
     companyWebsite,
     creator,
+    companyIcon,
   } = request.body;
-  if (!jobTitle || !companyName || !location || !description || !emailContact) {
+  if (
+    !jobTitle ||
+    !companyName ||
+    !location ||
+    !description ||
+    !emailContact ||
+    !companyIcon
+  ) {
     alert(
       "Except Company Website, all other information should be required when creating!"
     );

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import FileBase64 from "react-file-base64";
 
 export default function JobEdit() {
   const [foundJob, setFoundJob] = useState({});
@@ -32,6 +33,22 @@ export default function JobEdit() {
     <div class="job-create">
       <div class="form">
         <form class="create-form">
+          {/* <input
+            type="file"
+            placeholder="Job Title"
+            value={foundJob.jobTitle}
+            onChange={(e) => {
+              setFoundJob({ ...foundJob, companyIcon: e.target.files[0] });
+            }}
+          /> */}
+          <FileBase64
+            class="custom-file-input"
+            type="file"
+            multiple={false}
+            onDone={({ base64 }) =>
+              setFoundJob({ ...foundJob, companyIcon: base64 })
+            }
+          />
           <input
             type="text"
             placeholder="Job Title"

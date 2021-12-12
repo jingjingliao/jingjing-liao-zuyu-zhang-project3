@@ -20,6 +20,7 @@ function getUsersFavJobId(username, jobId) {
     { username: username },
     { $push: { favorites: jobId } }
   ).exec();
+<<<<<<< HEAD
 }
 
 function deleteFromFavorites(username, jobId) {
@@ -31,6 +32,8 @@ function deleteFromFavorites(username, jobId) {
 
 function getAllUsersFavorites(username) {
   return UserModel.find({"username": username}, {"favorites": 1, "_id":0});
+=======
+>>>>>>> 93f3e809c78f63f569486a3597d1def49a15f1e9
 }
 
 module.exports = {
@@ -38,6 +41,10 @@ module.exports = {
   findUserByUsername,
   getAllUsers,
   getUsersFavJobId,
+<<<<<<< HEAD
   getAllUsersFavorites,
   deleteFromFavorites,
 };
+=======
+};
+>>>>>>> 93f3e809c78f63f569486a3597d1def49a15f1e9
