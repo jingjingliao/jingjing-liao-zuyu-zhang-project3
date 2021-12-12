@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Image from "./images/JobSearch1.jpg";
 import { useNavigate } from "react-router";
+import FileBase64 from "react-file-base64";
 
 import { useParams } from "react-router";
 import "./css/JobDetails.css";
@@ -15,6 +16,7 @@ export default function () {
   const [job, setJob] = useState({});
   const [jobDeleteMsg, setJobDeleteMsg] = useState("");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [previewSource, setPreviewSource] = useState("");
 
   function findJobNameDetails() {
     axios
@@ -52,6 +54,7 @@ export default function () {
     <div>
       <div class="card container" id="jobDetails">
         <div class="card-content">
+          <img class="icon" src={job.companyIcon} />
           <div class="card-title">Job Title: {job.jobTitle}</div>
           <div class="card-text">
             <div>Company Name: {job.companyName}</div>
