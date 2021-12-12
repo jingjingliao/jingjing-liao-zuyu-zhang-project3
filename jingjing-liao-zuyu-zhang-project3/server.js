@@ -6,10 +6,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-// const alert = require("alert");
-// const cookieSession = require("cookie-session");
-// const flash = require("connect-flash");
-// const popup = require("popups");
 const MongoStore = require("connect-mongo");
 const app = express();
 
@@ -41,20 +37,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/job", jobBoard);
 app.use("/user", user);
-
-// app.use(session({
-//   cookie: {
-//     maxAge: 60000
-//   },
-//   resave: true,
-//   saveUninitialized: true}));
-// app.use(flash());
-
-// app.get('/flash', function(req, res){
-//   // Set a flash message by passing the key, followed by the value, to req.flash().
-//   req.flash('info', 'Flash is back!')
-//   res.redirect('/');
-// });
 
 // app.use(express.static(path.join(__dirname, 'build')));
 

@@ -12,6 +12,7 @@ export default function () {
   const [currentId, setCurrentId] = useState(null);
   const [job, setJob] = useState({});
   const [jobDeleteMsg, setJobDeleteMsg] = useState("");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   function findJobNameDetails() {
     axios
@@ -28,6 +29,16 @@ export default function () {
         setJobDeleteMsg("This Job has been successfully deleted!")
       )
       .catch((error) => console.log("No job found"));
+  }
+
+  function AddToUsersFavorites(jobID) {
+    axios
+      .post("http://localhost:8000/user/fav/" + currentUser)
+      .then((response) => {
+        response.data.push(jobID);
+        console.log(response.data);
+      })
+      .catch((error) => console.log("Failed to add to Favorites"));
   }
 
   useEffect(findJobNameDetails, []);
@@ -54,21 +65,15 @@ export default function () {
           </div>
 
           <div class="card-button">
-            <div class="like">Like</div>
-
+            <button class="like" onClick={AddToUsersFavorites(jobID)}>Add to Favorites</button>
             <div class="edit">
               <Link to={"/job/edit/" + jobID}>Edit</Link>
             </div>
-
             <div class="delete">
               <Link onClick={deleteJob} to={"/"}>
                 Delete
               </Link>
             </div>
-
-            {/* <div class="delete" onClick={deleteJob}>
-              Delete
-            </div> */}
           </div>
         </div>
         <img src={Image} />

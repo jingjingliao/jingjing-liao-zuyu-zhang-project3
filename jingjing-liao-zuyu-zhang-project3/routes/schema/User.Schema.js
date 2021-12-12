@@ -11,6 +11,9 @@ exports.UserSchema = new Schema(
     validation: {
       type: String,
     },
+    favorites: {
+      type: Array,
+    }
   },
   {
     collection: "users",

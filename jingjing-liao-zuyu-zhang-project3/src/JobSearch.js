@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Image from "./images/JobSearch1.jpg";
+const alert = require("alert");
 
 export default function JobSearch() {
   const jobTitle = useParams().jobTitle;
@@ -38,9 +39,8 @@ export default function JobSearch() {
               {job.location}
               <p>{job.companyName}</p>
             </p>
-
             <span class="card-link">
-              <Link to={"/job/" + job._id}>More Detals</Link>
+              <Link to={"/job/" + job._id}>More Details</Link>
             </span>
           </div>
           <img src={Image} />

@@ -15,8 +15,13 @@ function findUserByUsername(username) {
     return UserModel.findOne({username}).exec();
 }
 
+function getUserFavorites(username) {
+    return UserModel.find({"username": username}, {"favorites": 1, "_id":0});
+}
+
 module.exports = {
     insertUser,
     findUserByUsername,
     getAllUsers,
+    getUserFavorites,
 };

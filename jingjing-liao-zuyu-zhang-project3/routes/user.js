@@ -61,6 +61,15 @@ router.get("/:username", (request, response) => {
     .catch((error) => response.status(500).send("Issue getting user"));
 });
 
+router.post("/fav/:username", (request, response) => {
+  const username = request.params.username;
+  return UserAccessor.getUserFavorites(username)
+  .then((userResponse) => {
+    response.send(userResponse);
+  })
+  .catch((error) => response.status(500).send("Failed to get favorites"));
+});
+
 router.post("/signup", function (request, response) {
   const { username, password, validation } = request.body;
   if (!username || !password || !validation) {
