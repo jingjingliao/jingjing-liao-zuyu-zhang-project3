@@ -68,9 +68,8 @@
   background-color: #c7c5f4;
 }
 
-/* .deleteMsg {
-  font-size: 30px;
-  color: red;
-  font-weight: bold;
-  text-align: center;
-} */
+#jobDetails img {
+  height: 200px;
+  width: 250px;
+  border-radius: 4px;
+}

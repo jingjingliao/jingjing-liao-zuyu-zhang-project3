@@ -45,3 +45,15 @@ body {
   background: linear-gradient(90deg, #c7c5f4, #776bcc);
   font-family: "Roboto", sans-serif;
 }
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: "Select Company Icon";
+  border-radius: 3px;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-size: 13pt;
+}

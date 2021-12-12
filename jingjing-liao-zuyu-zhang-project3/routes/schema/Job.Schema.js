@@ -16,6 +16,7 @@ exports.JobSchema = new Schema(
       type: Date,
       default: new Date(),
     },
+    companyIcon: String,
   },
   { collection: "jobs" }
 );
