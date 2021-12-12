@@ -13,7 +13,7 @@ exports.UserSchema = new Schema(
     },
     favorites: {
       type: Array,
-    }
+    },
   },
   {
     collection: "users",

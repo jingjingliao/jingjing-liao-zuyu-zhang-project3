@@ -31,6 +31,23 @@ router.get("/:jobId", async function (request, response) {
   }
 });
 
+router.post("/getJobObjects", function (request, response) {
+  try {
+    const favArr = request.body;
+    const jobObjectArr = [];
+    for (let jobId of favArr) {
+      console.log(jobId);
+      const jobResponse = JobAccessor.findJobById(jobId);
+      console.log(jobResponse);
+      jobObjectArr.push(jobResponse);
+      console.log(jobObjectArr);
+      response.status(200).send(jobObjectArr);
+    }
+  } catch (err) {
+    response.status(400).send(err);
+  }
+});
+
 router.put("/edit/:jobId", function (request, response) {
   const {
     jobTitle,

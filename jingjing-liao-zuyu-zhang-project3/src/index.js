@@ -10,7 +10,7 @@ import JobDetails from "./JobDetails";
 import HomePage from "./HomePage";
 import JobCreate from "./JobCreate";
 import JobEdit from "./JobEdit";
-import JobFav from "./JobFav";
+import AllFavs from "./AllFavs";
 
 ReactDOM.render(
   <Router>
@@ -23,7 +23,7 @@ ReactDOM.render(
       <Route path="/job/:jobId" element={<JobDetails />} />
       <Route path="/job/edit/:jobId" element={<JobEdit />} />
       <Route path="/job/create" element={<JobCreate />} />
-      <Route path="/job/favorite" element={<JobFav />} />
+      <Route path="/allFavs" element={<AllFavs />} />
     </Routes>
   </Router>,
   document.getElementById("root")

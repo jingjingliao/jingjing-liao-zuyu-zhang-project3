@@ -1,8 +1,10 @@
 import "./css/JobCreate.css";
 import React, { useState } from "react";
 import axios, { Axios } from "axios";
+import { useNavigate } from "react-router";
 
 export default function JobCreate() {
+  const navigate = useNavigate();
   const [newJob, setNewJob] = useState({
     jobTitle: "",
     companyName: "",

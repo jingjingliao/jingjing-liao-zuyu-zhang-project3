@@ -1,9 +1,11 @@
 import "./css/Login.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function () {
+  const navigate = useNavigate();
   const [UserLogginIn, setUserLogginIn] = useState({
     username: "",
     password: "",
@@ -14,12 +16,12 @@ export default function () {
       .post("http://localhost:8000/user/authenticate", UserLogginIn)
       .then((response) => {
         setUserLogginIn(response.data);
-
         if (response.status === 200) {
           localStorage.setItem(
             "currentUser",
             JSON.stringify(UserLogginIn.username)
           );
+          navigate("/")
           window.location.reload();
         }
       })

@@ -34,7 +34,7 @@ export default function Navbar() {
                 <Link to="/job/create">Job Create </Link>
               </li>
               <li>
-                <Link to="/job/favorite">Fav Jobs </Link>
+                <Link to="/allFavs">Favorited Jobs </Link>
               </li>
               <li>
                 <Link to="/" onClick={logout}>
