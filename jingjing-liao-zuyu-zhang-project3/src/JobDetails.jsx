@@ -2,16 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Image from "./images/JobSearch1.jpg";
+import { useNavigate } from "react-router";
 
 import { useParams } from "react-router";
 import "./css/JobDetails.css";
 
 export default function () {
   const jobID = useParams().jobId;
+  const navigate = useNavigate();
 
   const [currentId, setCurrentId] = useState(null);
   const [job, setJob] = useState({});
   const [jobDeleteMsg, setJobDeleteMsg] = useState("");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   function findJobNameDetails() {
     axios
@@ -28,6 +31,19 @@ export default function () {
         setJobDeleteMsg("This Job has been successfully deleted!")
       )
       .catch((error) => console.log("No job found"));
+  }
+
+  function AddToUsersFavorites() {
+    if (!currentUser) {
+      navigate("/");
+    } else {
+      axios
+        .post("http://localhost:8000/user/fav/" + jobID)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => console.log("Failed to add to Favorites"));
+    }
   }
 
   useEffect(findJobNameDetails, []);
@@ -53,7 +69,7 @@ export default function () {
             <div>Posting Date: {job.createAt}</div>
           </div>
 
-          <div class="card-button">
+          <div class="card-button" onClick={AddToUsersFavorites}>
             <div class="like">Like</div>
 
             <div class="edit">

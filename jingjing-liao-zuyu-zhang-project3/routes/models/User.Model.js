@@ -1,22 +1,30 @@
 const mongoose = require("mongoose");
-const UserSchema = require('../schema/User.Schema').UserSchema;
+const UserSchema = require("../schema/User.Schema").UserSchema;
 
 const UserModel = mongoose.model("User", UserSchema);
 
 function insertUser(user) {
-    return UserModel.create(user);
+  return UserModel.create(user);
 }
 
 function getAllUsers() {
-    return UserModel.find().exec();
+  return UserModel.find().exec();
 }
 
 function findUserByUsername(username) {
-    return UserModel.findOne({username}).exec();
+  return UserModel.findOne({ username }).exec();
+}
+
+function getUsersFavJobId(username, jobId) {
+  return UserModel.findOneAndUpdate(
+    { username: username },
+    { $push: { favorites: jobId } }
+  ).exec();
 }
 
 module.exports = {
-    insertUser,
-    findUserByUsername,
-    getAllUsers,
+  insertUser,
+  findUserByUsername,
+  getAllUsers,
+  getUsersFavJobId,
 };

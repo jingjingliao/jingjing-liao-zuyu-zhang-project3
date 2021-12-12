@@ -93,6 +93,17 @@ router.post("/signup", function (request, response) {
     .catch((error) => response.status(400).send(error));
 });
 
+router.post("/fav/:jobId", (request, response) => {
+  const jobId = request.params.jobId;
+  const username = request.session.username;
+  console.log(jobId);
+  return UserAccessor.getUsersFavJobId(username, jobId)
+    .then((userResponse) => {
+      response.send(userResponse);
+    })
+    .catch((error) => response.status(500).send("Failed to get favorites"));
+});
+
 router.post("/logout", function (request, response) {
   request.session.destroy();
   alert("Successfully Logged Out!");
