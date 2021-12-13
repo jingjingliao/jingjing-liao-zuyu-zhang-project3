@@ -59,19 +59,17 @@ router.put("/edit/:jobId", function (request, response) {
     companyIcon,
   } = request.body;
 
-  if (
-    !jobTitle ||
-    !companyName ||
-    !location ||
-    !description ||
-    !emailContact ||
-    !companyIcon
-  ) {
-    alert(
-      "Except Company Website, all other information should be required when editting!"
-    );
-    return response.status(422).send("Missing data");
-  }
+  if (!jobTitle || 
+      !companyName || 
+      !location || 
+      !description || 
+      !emailContact ||
+      !companyIcon) {
+        alert(
+          "Except Company Website, all other information should be required when editting!"
+        );
+      return response.status(422).send("Missing data");
+    }
 
   return JobAccessor.updateById(request.params.jobId, request.body)
     .then((jobResponse) => response.status(200).send(jobResponse))
@@ -89,18 +87,17 @@ router.post("/create", (request, response) => {
     creator,
     companyIcon,
   } = request.body;
-  if (
-    !jobTitle ||
-    !companyName ||
-    !location ||
-    !description ||
-    !emailContact ||
-    !companyIcon
-  ) {
-    alert(
-      "Except Company Website, all other information should be required when creating!"
-    );
-    return response.status(422).send("Missing data");
+  if (!jobTitle || 
+      !companyName || 
+      !location || 
+      !description || 
+      !emailContact ||
+      !companyIcon
+    ) {
+      alert(
+        "Except Company Website, all other information should be required when creating!"
+      );
+      return response.status(422).send("Missing data");
   }
 
   return JobAccessor.insertJob(request.body)

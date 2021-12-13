@@ -29,7 +29,7 @@ export default function JobEdit() {
       .catch((error) => console.log(error));
   }
 
-  return (
+   return (
     <div class="job-create">
       <div class="form">
         <form class="create-form">

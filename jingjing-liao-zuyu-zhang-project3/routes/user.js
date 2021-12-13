@@ -93,16 +93,9 @@ router.post("/signup", function (request, response) {
     .catch((error) => response.status(400).send(error));
 });
 
-<<<<<<< HEAD
 router.post("/fav/:username/:jobId", (request, response) => {
   const jobId = request.params.jobId;
   const username = request.params.username;
-=======
-router.post("/fav/:jobId", (request, response) => {
-  const jobId = request.params.jobId;
-  const username = request.session.username;
-  console.log(jobId);
->>>>>>> 93f3e809c78f63f569486a3597d1def49a15f1e9
   return UserAccessor.getUsersFavJobId(username, jobId)
     .then((userResponse) => {
       response.send(userResponse);
@@ -110,7 +103,6 @@ router.post("/fav/:jobId", (request, response) => {
     .catch((error) => response.status(500).send("Failed to get favorites"));
 });
 
-<<<<<<< HEAD
 router.delete("/fav/:username/:jobId", (request, response) => {
   const jobId = request.params.jobId;
   const username = request.params.username;
@@ -147,8 +139,6 @@ router.get("/existsInFavs/:username/:jobId", (request, response) => {
   .catch((error) => response.status(500).send("Failed to check if job exists in user's favorites!!"));
 })
 
-=======
->>>>>>> 93f3e809c78f63f569486a3597d1def49a15f1e9
 router.post("/logout", function (request, response) {
   request.session.destroy();
   alert("Successfully Logged Out!");

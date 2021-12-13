@@ -1,11 +1,8 @@
 import "./css/JobCreate.css";
 import React, { useState } from "react";
 import axios, { Axios } from "axios";
-<<<<<<< HEAD
 import { useNavigate } from "react-router";
-=======
 import FileBase64 from "react-file-base64";
->>>>>>> 93f3e809c78f63f569486a3597d1def49a15f1e9
 
 export default function JobCreate() {
   const navigate = useNavigate();
@@ -22,7 +19,6 @@ export default function JobCreate() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(newJob);
     axios
       .post("http://localhost:8000/job/create", newJob)
       .then((response) => {
@@ -31,7 +27,7 @@ export default function JobCreate() {
       .catch((error) => console.log(error));
   }
 
-  return (
+   return (
     <div class="job-create">
       <div class="form">
         <form class="create-form" onSubmit={handleSubmit}>

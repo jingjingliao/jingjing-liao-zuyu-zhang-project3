@@ -23,12 +23,7 @@ ReactDOM.render(
       <Route path="/job/:jobId" element={<JobDetails />} />
       <Route path="/job/edit/:jobId" element={<JobEdit />} />
       <Route path="/job/create" element={<JobCreate />} />
-<<<<<<< HEAD
       <Route path="/allFavs" element={<AllFavs />} />
-=======
-      {/* <Route path="/job/favorite" element={<JobFav />} /> */}
-      <Route path="/user/fav/:jobId" element={<JobFav />} />
->>>>>>> 93f3e809c78f63f569486a3597d1def49a15f1e9
     </Routes>
   </Router>,
   document.getElementById("root")
