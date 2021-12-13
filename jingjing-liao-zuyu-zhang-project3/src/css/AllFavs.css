@@ -33,3 +33,23 @@
   margin-right: 15px;
   font-size: 20px;
 }
+
+#favJobs .card-link {
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+}
+
+#favJobs .card-link a {
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  background-color: whitesmoke;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+#favJobs .card-link a:hover {
+  color: black;
+  background-color: #c7c5f4;
+}

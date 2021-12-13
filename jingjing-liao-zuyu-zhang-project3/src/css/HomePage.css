@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 #homepage {
   display: flex;
   flex-direction: column;
@@ -24,6 +27,7 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   transition: background-color 0.4s ease;
   border-radius: 4px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #homepage .textbox {
@@ -38,6 +42,7 @@
   font-size: 20px;
   border-radius: 4px;
   margin-bottom: 40px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 button:hover {

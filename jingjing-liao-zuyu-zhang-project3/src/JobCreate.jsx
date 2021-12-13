@@ -1,11 +1,11 @@
 import "./css/JobCreate.css";
 import React, { useState } from "react";
 import axios, { Axios } from "axios";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import FileBase64 from "react-file-base64";
 
 export default function JobCreate() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [newJob, setNewJob] = useState({
     jobTitle: "",
     companyName: "",
@@ -22,7 +22,7 @@ export default function JobCreate() {
     axios
       .post("http://localhost:8000/job/create", newJob)
       .then((response) => {
-        console.log(response);
+        navigate("/job/" + response.data._id);
       })
       .catch((error) => console.log(error));
   }

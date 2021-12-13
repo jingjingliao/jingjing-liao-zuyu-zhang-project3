@@ -5,6 +5,16 @@
   margin-top: 30px;
 }
 
+.bts {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-and-delete {
+  display: flex;
+  flex-direction: row;
+}
+
 #jobDetails img {
   height: 250px;
   width: 500px;

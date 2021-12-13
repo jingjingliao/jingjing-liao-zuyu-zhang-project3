@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
+
 .jobSearch {
+  font-family: 'Bakbak One', cursive;
   font-size: 30px;
   font-weight: 100px;
   margin-top: 20px;
+}
+
+#reference-to-user {
+  color: whitesmoke;
 }
 
 a {
@@ -30,6 +37,7 @@ header {
 }
 
 .nav-list li {
+  font-family: 'Bakbak One', cursive;
   display: inline-block;
   padding: 10px;
   margin: 5px;

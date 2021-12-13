@@ -16,25 +16,26 @@ export default function Navbar() {
   };
 
   return (
-    <div>
+    <div id="nav-bar">
       <header class="container">
         <Link class="jobSearch" to="/">
           Job Search Website{" "}
         </Link>
 
         <ul class="nav-list">
-          <li>
-            <Link to="/">Home </Link>
-          </li>
-
           {user ? (
             <div>
-              <Link to="/">{user} </Link>
-              <li>
-                <Link to="/job/create">Job Create </Link>
+              <li id="reference-to-user">
+                <Link to="/">{user} </Link>
               </li>
               <li>
-                <Link to="/allFavs">Favorited Jobs </Link>
+                <Link to="/">Home </Link>
+              </li>
+              <li>
+                <Link to="/job/create">Create Job</Link>
+              </li>
+              <li>
+                <Link to="/allFavs">Favorites</Link>
               </li>
               <li>
                 <Link to="/" onClick={logout}>
@@ -45,10 +46,13 @@ export default function Navbar() {
           ) : (
             <div>
               <li>
-                <Link to="/login">Login </Link>
+                <Link to="/">Home </Link>
               </li>
               <li>
-                <Link to="/Signup">Sign up </Link>
+                <Link to="/login">Sign In</Link>
+              </li>
+              <li>
+                <Link to="/Signup">Register</Link>
               </li>
             </div>
           )}

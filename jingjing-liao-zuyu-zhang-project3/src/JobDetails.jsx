@@ -5,20 +5,17 @@ import Image from "./images/JobSearch1.jpg";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router";
 import "./css/JobDetails.css";
-import FileBase64 from "react-file-base64";
 
 export default function () {
   const jobID = useParams().jobId;
   const [jobInFav, changeJobFavState] = useState(false);
   const navigate = useNavigate();
 
-  // const [currentId, setCurrentId] = useState(null);
   const [job, setJob] = useState({});
   const [jobDeleteMsg, setJobDeleteMsg] = useState("");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [FavMessage, setFavMessage] = useState("");
   const [favDeleteMessage, setFavDeleteMessage] = useState("");
-  // const [previewSource, setPreviewSource] = useState("");
 
   function findJobNameDetails() {
     axios
@@ -27,7 +24,7 @@ export default function () {
       .catch((error) => console.log("No job found"));
   }
 
-  useEffect(findJobNameDetails, []);
+  
 
   function JobExistsInFavList() {
     axios
@@ -56,8 +53,7 @@ export default function () {
       axios
         .post("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
         .then(
-          (response) => setFavMessage("Added job to your favorites!"),
-          navigate("/job/" + jobID)
+          (response) => setFavMessage("Added job to your favorites!"), window.location.reload()
         )
         .catch((error) => console.log("Failed to add to Favorites"));
     }
@@ -70,12 +66,13 @@ export default function () {
       axios
         .delete("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
         .then(
-          (response) => setFavDeleteMessage("Removed from your favorites!"),
-          navigate("/job/" + jobID)
+          (response) => setFavDeleteMessage("Removed from your favorites!"), window.location.reload()
         )
         .catch((error) => console.log("Failed to remove from favorites"));
     }
   }
+
+  useEffect(findJobNameDetails, []);
 
   return (
     <div>
@@ -109,28 +106,28 @@ export default function () {
 
           <div class="card-button">
             {jobInFav ? (
-              <span onClick={RemoveFromUsersFavorites} class="like">
+              <div onClick={RemoveFromUsersFavorites} class="like bts">
                 Unfavorite
                 <div>{favDeleteMessage}</div>
-              </span>
+              </div>
             ) : (
-              <span onClick={AddToUsersFavorites} class="like">
+              <div onClick={AddToUsersFavorites} class="like bts">
                 Add to Favorites
                 <div>{FavMessage}</div>
-              </span>
+              </div>
             )}
 
             {currentUser === job.creator ? (
-              <div>
-                <span class="edit">
+              <div class="edit-and-delete">
+                <div class="edit">
                   <Link to={"/job/edit/" + jobID}>Edit</Link>
-                </span>
+                </div>
 
-                <span class="delete">
+                <div class="delete">
                   <Link onClick={deleteJob} to={"/"}>
                     Delete
                   </Link>
-                </span>
+                </div>
               </div>
             ) : (
               <div></div>
