@@ -12,14 +12,13 @@ export default function () {
   const [jobInFav, changeJobFavState] = useState(false);
   const navigate = useNavigate();
 
-  const [currentId, setCurrentId] = useState(null);
+  // const [currentId, setCurrentId] = useState(null);
   const [job, setJob] = useState({});
   const [jobDeleteMsg, setJobDeleteMsg] = useState("");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [FavMessage, setFavMessage] = useState("");
   const [favDeleteMessage, setFavDeleteMessage] = useState("");
-  const [previewSource, setPreviewSource] = useState("");
-  
+  // const [previewSource, setPreviewSource] = useState("");
 
   function findJobNameDetails() {
     axios
@@ -32,7 +31,9 @@ export default function () {
 
   function JobExistsInFavList() {
     axios
-      .get("http://localhost:8000/user/existsInFavs/" + currentUser + "/" + jobID)
+      .get(
+        "http://localhost:8000/user/existsInFavs/" + currentUser + "/" + jobID
+      )
       .then((response) => changeJobFavState(response.data))
       .catch((error) => console.log("Failed to check"));
   }
@@ -54,18 +55,24 @@ export default function () {
     } else {
       axios
         .post("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
-        .then((response) => setFavMessage("Added job to your favorites!"), navigate("/job/" + jobID))
+        .then(
+          (response) => setFavMessage("Added job to your favorites!"),
+          navigate("/job/" + jobID)
+        )
         .catch((error) => console.log("Failed to add to Favorites"));
     }
   }
 
   function RemoveFromUsersFavorites() {
     if (!currentUser) {
-      navigate("/login")
+      navigate("/login");
     } else {
       axios
         .delete("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
-        .then((response) => setFavDeleteMessage("Removed from your favorites!"), navigate("/job/" + jobID))
+        .then(
+          (response) => setFavDeleteMessage("Removed from your favorites!"),
+          navigate("/job/" + jobID)
+        )
         .catch((error) => console.log("Failed to remove from favorites"));
     }
   }
@@ -82,11 +89,17 @@ export default function () {
             <div>Description: {job.description}</div>
 
             <div>
-              Send Email: <a href={"mailto:" + job.emailContact} method="POST">{job.emailContact}</a>
+              Send Email:{" "}
+              <a href={"mailto:" + job.emailContact} method="POST">
+                {job.emailContact}
+              </a>
             </div>
             {job.companyWebsite ? (
               <div>
-                Company Website: <a href={"https://" + job.companyWebsite} target="_blank">{job.companyWebsite}</a>
+                Company Website:{" "}
+                <a href={"https://" + job.companyWebsite} target="_blank">
+                  {job.companyWebsite}
+                </a>
               </div>
             ) : (
               <div></div>
@@ -96,30 +109,28 @@ export default function () {
 
           <div class="card-button">
             {jobInFav ? (
-              <div onClick={RemoveFromUsersFavorites} class="like">
+              <span onClick={RemoveFromUsersFavorites} class="like">
                 Unfavorite
-                <div>
-                  {favDeleteMessage}
-                </div>
-              </div>
+                <div>{favDeleteMessage}</div>
+              </span>
             ) : (
-              <div onClick={AddToUsersFavorites} class="like">
+              <span onClick={AddToUsersFavorites} class="like">
                 Add to Favorites
-                <div>
-                  {FavMessage}
-                </div>
-              </div>
+                <div>{FavMessage}</div>
+              </span>
             )}
 
             {currentUser === job.creator ? (
-                <div>
-                  <div class="edit">
+              <div>
+                <span class="edit">
                   <Link to={"/job/edit/" + jobID}>Edit</Link>
-                </div>
+                </span>
 
-                <div class="delete">
-                    <Link onClick={deleteJob} to={"/"}>Delete</Link>
-                </div>
+                <span class="delete">
+                  <Link onClick={deleteJob} to={"/"}>
+                    Delete
+                  </Link>
+                </span>
               </div>
             ) : (
               <div></div>

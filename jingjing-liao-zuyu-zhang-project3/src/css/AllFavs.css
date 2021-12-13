@@ -1,0 +1,35 @@
+#favJobs {
+  position: relative;
+  text-align: left;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#favJobs img {
+  height: 250px;
+  width: 500px;
+  border-radius: 4px;
+}
+
+#favJobs .card-title {
+  font-size: 30px;
+}
+
+#favJobs .card-text {
+  font-size: 20px;
+}
+
+.card-title:hover {
+  color: royalblue;
+  font-weight: bold;
+}
+
+#favJobs .card-button {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+  margin-right: 15px;
+  font-size: 20px;
+}

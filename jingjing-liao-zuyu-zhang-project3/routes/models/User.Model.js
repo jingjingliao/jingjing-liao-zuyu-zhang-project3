@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const UserSchema = require("../schema/User.Schema").UserSchema;
-
 const UserModel = mongoose.model("User", UserSchema);
 
 function insertUser(user) {
@@ -25,12 +24,12 @@ function getUsersFavJobId(username, jobId) {
 function deleteFromFavorites(username, jobId) {
   return UserModel.findOneAndUpdate(
     { username: username },
-    { $pull : { favorites: jobId } }
+    { $pull: { favorites: jobId } }
   ).exec();
 }
 
 function getAllUsersFavorites(username) {
-  return UserModel.find({"username": username}, {"favorites": 1, "_id":0});
+  return UserModel.find({ username: username }, { favorites: 1, _id: 0 });
 }
 
 module.exports = {

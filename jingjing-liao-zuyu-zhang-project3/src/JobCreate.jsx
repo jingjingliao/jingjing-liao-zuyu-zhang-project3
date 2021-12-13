@@ -1,11 +1,11 @@
 import "./css/JobCreate.css";
 import React, { useState } from "react";
 import axios, { Axios } from "axios";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import FileBase64 from "react-file-base64";
 
 export default function JobCreate() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [newJob, setNewJob] = useState({
     jobTitle: "",
     companyName: "",
@@ -27,7 +27,7 @@ export default function JobCreate() {
       .catch((error) => console.log(error));
   }
 
-   return (
+  return (
     <div class="job-create">
       <div class="form">
         <form class="create-form" onSubmit={handleSubmit}>

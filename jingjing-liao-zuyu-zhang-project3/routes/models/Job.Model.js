@@ -21,6 +21,11 @@ async function findJobById(jobId) {
   return await JobModel.findById(jobId).exec();
 }
 
+async function findJobByIds(ids) {
+  console.log(ids);
+  return await JobModel.find({ _id: { $in: ids } }).exec();
+}
+
 function deleteJobById(jobId) {
   return JobModel.deleteOne({ jobId: jobId }).exec();
 }
@@ -36,4 +41,5 @@ module.exports = {
   findJobById,
   deleteJobById,
   updateById,
+  findJobByIds,
 };

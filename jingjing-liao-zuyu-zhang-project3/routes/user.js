@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const UserAccessor = require("./models/User.Model");
+const JobAccessor = require("./models/Job.Model");
 const alert = require("alert");
 
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const auth_middleware = require("./auth_middleware");
 
 router.get("/findAll", function (request, response) {
@@ -111,33 +112,41 @@ router.delete("/fav/:username/:jobId", (request, response) => {
       response.send(userResponse);
     })
     .catch((error) => response.status(500).send("Failed to delete"));
-})
+});
 
-router.get("/findAllFavs/:username", (request, response) => {
-  const username = request.params.username;
-  return UserAccessor.getAllUsersFavorites(username)
-  .then((userResponse) => {
-    const favArray = userResponse[0].favorites;
-    response.send(favArray);
-  })
-  .catch((error) => response.status(500).send("Failed to get all favorites"));
+router.get("/findAllFavs/:username", async (request, response) => {
+  try {
+    const username = request.params.username;
+    const ids = await UserAccessor.getAllUsersFavorites(username);
+    const favIds = ids[0].favorites;
+    console.log(favIds);
+    await JobAccessor.findJobByIds(favIds).then((userResponse) => {
+      response.send(userResponse);
+    });
+  } catch (err) {
+    response.status(500).send("Failed to get all favorites");
+  }
 });
 
 router.get("/existsInFavs/:username/:jobId", (request, response) => {
   const jobId = request.params.jobId;
   const username = request.params.username;
   return UserAccessor.getAllUsersFavorites(username)
-  .then((userResponse) => {
-    const favArray = userResponse[0].favorites;
-    for (let i = 0; i < favArray.length; i++) {
-      if (favArray[i] == jobId) {
-        return response.status(200).send(true);
+    .then((userResponse) => {
+      const favArray = userResponse[0].favorites;
+      for (let i = 0; i < favArray.length; i++) {
+        if (favArray[i] == jobId) {
+          return response.status(200).send(true);
+        }
       }
-    }
-    return response.status(200).send(false);
-  })
-  .catch((error) => response.status(500).send("Failed to check if job exists in user's favorites!!"));
-})
+      return response.status(200).send(false);
+    })
+    .catch((error) =>
+      response
+        .status(500)
+        .send("Failed to check if job exists in user's favorites!!")
+    );
+});
 
 router.post("/logout", function (request, response) {
   request.session.destroy();
