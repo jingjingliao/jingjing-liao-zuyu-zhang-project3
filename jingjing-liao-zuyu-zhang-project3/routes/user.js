@@ -4,7 +4,6 @@ const UserAccessor = require("./models/User.Model");
 const JobAccessor = require("./models/Job.Model");
 const alert = require("alert");
 
-// const jwt = require("jsonwebtoken");
 const auth_middleware = require("./auth_middleware");
 
 router.get("/findAll", function (request, response) {

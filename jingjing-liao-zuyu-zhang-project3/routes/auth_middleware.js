@@ -1,5 +1,3 @@
-const jwt = require("jsonwebtoken");
-
 module.exports = function (request, response, next) {
   const username = request.session.username;
   if (!username) {

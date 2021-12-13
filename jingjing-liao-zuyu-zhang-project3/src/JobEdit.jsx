@@ -29,18 +29,10 @@ export default function JobEdit() {
       .catch((error) => console.log(error));
   }
 
-   return (
+  return (
     <div class="job-create">
       <div class="form">
         <form class="create-form">
-          {/* <input
-            type="file"
-            placeholder="Job Title"
-            value={foundJob.jobTitle}
-            onChange={(e) => {
-              setFoundJob({ ...foundJob, companyIcon: e.target.files[0] });
-            }}
-          /> */}
           <FileBase64
             class="custom-file-input"
             type="file"

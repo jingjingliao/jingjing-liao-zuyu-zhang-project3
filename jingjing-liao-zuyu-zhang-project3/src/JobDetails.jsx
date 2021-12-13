@@ -12,7 +12,6 @@ export default function () {
   const navigate = useNavigate();
 
   const [job, setJob] = useState({});
-  const [jobDeleteMsg, setJobDeleteMsg] = useState("");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [FavMessage, setFavMessage] = useState("");
   const [favDeleteMessage, setFavDeleteMessage] = useState("");
@@ -23,8 +22,6 @@ export default function () {
       .then((response) => setJob(response.data))
       .catch((error) => console.log("No job found"));
   }
-
-  
 
   function JobExistsInFavList() {
     axios
@@ -40,8 +37,7 @@ export default function () {
     axios
       .delete("http://localhost:8000/job/" + jobID)
       .then(
-        (response) => setJob(response.data),
-        setJobDeleteMsg("This Job has been successfully deleted!")
+        (response) => setJob(response.data)
       )
       .catch((error) => console.log("No job found"));
   }
@@ -53,7 +49,8 @@ export default function () {
       axios
         .post("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
         .then(
-          (response) => setFavMessage("Added job to your favorites!"), window.location.reload()
+          (response) => setFavMessage("Added job to your favorites!"),
+          window.location.reload()
         )
         .catch((error) => console.log("Failed to add to Favorites"));
     }
@@ -66,7 +63,8 @@ export default function () {
       axios
         .delete("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
         .then(
-          (response) => setFavDeleteMessage("Removed from your favorites!"), window.location.reload()
+          (response) => setFavDeleteMessage("Removed from your favorites!"),
+          window.location.reload()
         )
         .catch((error) => console.log("Failed to remove from favorites"));
     }

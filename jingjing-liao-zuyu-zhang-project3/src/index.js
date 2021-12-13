@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./css/index.css";
 import Navbar from "./Navbar";
 import JobSearch from "./JobSearch";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
 import JobDetails from "./JobDetails";

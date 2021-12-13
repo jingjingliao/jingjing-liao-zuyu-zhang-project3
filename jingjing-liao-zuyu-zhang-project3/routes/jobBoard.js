@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const JobAccessor = require("./models/Job.Model");
 const alert = require("alert");
-// const auth_middleware = require("./auth_middleware");
 
 router.get("/findAll", function (request, response) {
   return JobAccessor.getAllJob()
@@ -36,11 +35,8 @@ router.post("/getJobObjects", function (request, response) {
     const favArr = request.body;
     const jobObjectArr = [];
     for (let jobId of favArr) {
-      console.log(jobId);
       const jobResponse = JobAccessor.findJobById(jobId);
-      console.log(jobResponse);
       jobObjectArr.push(jobResponse);
-      console.log(jobObjectArr);
       response.status(200).send(jobObjectArr);
     }
   } catch (err) {
@@ -109,6 +105,7 @@ router.post("/create", (request, response) => {
 });
 
 router.delete("/:jobId", function (request, response) {
+  alert("Successfully deleting this Job!");
   return JobAccessor.deleteJobById(request.params.jobId)
     .then((jobResponse) => response.status(200).send(jobResponse))
     .catch((error) => response.status(400).send(error));

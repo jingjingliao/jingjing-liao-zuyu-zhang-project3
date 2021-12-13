@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./css/Signup.css";
 import { useNavigate } from "react-router";
 
