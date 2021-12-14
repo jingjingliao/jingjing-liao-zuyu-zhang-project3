@@ -61,7 +61,7 @@ router.get("/:username", (request, response) => {
 router.post("/signup", function (request, response) {
   const { username, password, validation } = request.body;
   if (!username || !password || !validation) {
-    // alert("Please fill in all fields");
+    alert("Please fill in all fields");
     return response.status(422).send("Sign up failed. Missing data.");
   }
   // check if username already exists
@@ -73,7 +73,7 @@ router.post("/signup", function (request, response) {
       } else {
         // check if passwords match
         if (password !== validation) {
-          // alert("Passwords don't match.");
+          alert("Passwords don't match.");
           return response
             .status(422)
             .send("Sign up failed. Passwords don't match");
@@ -115,7 +115,6 @@ router.get("/findAllFavs/:username", async (request, response) => {
     const username = request.params.username;
     const ids = await UserAccessor.getAllUsersFavorites(username);
     const favIds = ids[0].favorites;
-    console.log(favIds);
     await JobAccessor.findJobByIds(favIds).then((userResponse) => {
       response.send(userResponse);
     });
