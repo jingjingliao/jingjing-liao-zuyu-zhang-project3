@@ -21,7 +21,7 @@ router.post("/authenticate", (request, response) => {
   let { username, password } = request.body;
   if (!username || !password) {
     alert("Please input both your username and password");
-    return response.status(422).send("Username and/or password not provided");
+    return response.status(404).send("Username and/or password not provided");
   }
   return UserAccessor.findUserByUsername(username).then((userResponse) => {
     if (!userResponse) {
@@ -61,7 +61,7 @@ router.get("/:username", (request, response) => {
 router.post("/signup", function (request, response) {
   const { username, password, validation } = request.body;
   if (!username || !password || !validation) {
-    alert("Please fill in all fields");
+    // alert("Please fill in all fields");
     return response.status(422).send("Sign up failed. Missing data.");
   }
   // check if username already exists
@@ -73,7 +73,7 @@ router.post("/signup", function (request, response) {
       } else {
         // check if passwords match
         if (password !== validation) {
-          alert("Passwords don't match.");
+          // alert("Passwords don't match.");
           return response
             .status(422)
             .send("Sign up failed. Passwords don't match");

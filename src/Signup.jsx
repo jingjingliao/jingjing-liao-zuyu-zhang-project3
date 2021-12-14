@@ -12,11 +12,25 @@ export default function () {
     validation: "",
   });
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   function onRegister() {
     axios
       .post("/api/user/signup", userData)
-      .then((response) => setUserData(response.data), navigate("/"))
-      .catch((error) => console.log(error));
+      .then((response) => setUserData(response.data))
+      .catch((error) => {
+        if (userData.password !== userData.validation) {
+          setErrorMsg("Sign up failed. Passwords don't match");
+        } else if (
+          !userData.username ||
+          !userData.password ||
+          !userData.validation
+        ) {
+          setErrorMsg("Sign up failed. Missing data.");
+        } else {
+          setErrorMsg("Sign up failed. Username is taken");
+        }
+      });
   }
 
   return (
@@ -63,6 +77,8 @@ export default function () {
         <p class="message">
           Already have an account? <Link to="/login">Sign in</Link>
         </p>
+
+        <div class="errorMsg">{errorMsg}</div>
       </div>
     </div>
   );

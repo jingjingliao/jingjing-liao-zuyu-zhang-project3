@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+const alert = require("alert");
 
 export default function () {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export default function () {
     username: "",
     password: "",
   });
+  const [errorMsg, setErrorMsg] = useState("");
 
   function onSubmit() {
     axios
@@ -21,12 +23,21 @@ export default function () {
             "currentUser",
             JSON.stringify(UserLogginIn.username)
           );
-          navigate("/")
+          navigate("/");
           window.location.reload();
+        } else {
+          console.log(response);
         }
+        // else if (response.status === 422) {
+        //   setErrorMsg("Please input both your username and password!");
+        // } else {
+        //   setErrorMsg("No user found with this username!");
+        // }
       })
-      .catch((error) => { 
-        
+      .catch((error) => {
+        setErrorMsg(
+          "Both username and password should be provided and they need to be matched, please try again! "
+        );
       });
   }
 
@@ -62,6 +73,8 @@ export default function () {
           <p class="message">
             Not registered? <Link to="/signup">Create an account</Link>
           </p>
+
+          <div class="errorMsg">{errorMsg}</div>
         </div>
       </div>
     </div>
