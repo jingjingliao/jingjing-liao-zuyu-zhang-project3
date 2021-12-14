@@ -38,8 +38,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/job", jobBoard);
-app.use("/user", user);
+app.use("/api/job", jobBoard);
+
+app.use("/api/user", user);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "build")));

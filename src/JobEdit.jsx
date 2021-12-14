@@ -13,7 +13,7 @@ export default function JobEdit() {
 
   useEffect(() => {
     axios
-      .get(`/job/${jobID}`)
+      .get(`/api/job/${jobID}`)
       .then((res) => {
         setFoundJob(res.data);
       })
@@ -22,7 +22,7 @@ export default function JobEdit() {
 
   function handleSubmit() {
     axios
-      .put(`/job/edit/${jobID}`, foundJob)
+      .put(`api/job/edit/${jobID}`, foundJob)
       .then((response) => {
         console.log(response);
         navigate(`/job/${jobID}`);
