@@ -18,7 +18,7 @@ export default function () {
 
   function findJobNameDetails() {
     axios
-      .get("http://localhost:8000/job/" + jobID)
+      .get("/job/" + jobID)
       .then((response) => setJob(response.data))
       .catch((error) => console.log("No job found"));
   }
@@ -26,7 +26,7 @@ export default function () {
   function JobExistsInFavList() {
     axios
       .get(
-        "http://localhost:8000/user/existsInFavs/" + currentUser + "/" + jobID
+        "/user/existsInFavs/" + currentUser + "/" + jobID
       )
       .then((response) => changeJobFavState(response.data))
       .catch((error) => console.log("Failed to check"));
@@ -35,10 +35,8 @@ export default function () {
 
   function deleteJob() {
     axios
-      .delete("http://localhost:8000/job/" + jobID)
-      .then(
-        (response) => setJob(response.data)
-      )
+      .delete("/job/" + jobID)
+      .then((response) => setJob(response.data))
       .catch((error) => console.log("No job found"));
   }
 
@@ -47,7 +45,7 @@ export default function () {
       navigate("/login");
     } else {
       axios
-        .post("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
+        .post("/user/fav/" + currentUser + "/" + jobID)
         .then(
           (response) => setFavMessage("Added job to your favorites!"),
           window.location.reload()
@@ -61,7 +59,7 @@ export default function () {
       navigate("/login");
     } else {
       axios
-        .delete("http://localhost:8000/user/fav/" + currentUser + "/" + jobID)
+        .delete("/user/fav/" + currentUser + "/" + jobID)
         .then(
           (response) => setFavDeleteMessage("Removed from your favorites!"),
           window.location.reload()

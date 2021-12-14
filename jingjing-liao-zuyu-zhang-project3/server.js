@@ -8,8 +8,11 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const app = express();
+require("dotenv").config({ path: "./config.env" });
 
 const mongoString = "mongodb://127.0.0.1/user_app";
+
+const PORT = process.env.PORT || 8000;
 
 const mongoDBEndpoint = process.env.MONGODB_URI || mongoString;
 
@@ -38,13 +41,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/job", jobBoard);
 app.use("/user", user);
 
-// app.use(express.static(path.join(__dirname, 'build')));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "build")));
+  app.get("*", function (req, res) {
+    console.log("received request");
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
 
-// app.get('*', function (req, res) {
-//     console.log("received request");
-//     res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
-
-app.listen(8000, function () {
+app.listen(PORT, function () {
   console.log("Starting server!");
 });

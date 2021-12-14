@@ -20,7 +20,7 @@ export default function JobCreate() {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/job/create", newJob)
+      .post("/job/create", newJob)
       .then((response) => {
         navigate("/job/" + response.data._id);
       })

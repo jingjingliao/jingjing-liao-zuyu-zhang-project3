@@ -13,7 +13,7 @@ export default function () {
 
   function onSubmit() {
     axios
-      .post("http://localhost:8000/user/authenticate", UserLogginIn)
+      .post("/user/authenticate", UserLogginIn)
       .then((response) => {
         setUserLogginIn(response.data);
         if (response.status === 200) {

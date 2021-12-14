@@ -12,7 +12,7 @@ export default function JobEdit() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/job/${jobID}`)
+      .get(`/job/${jobID}`)
       .then((res) => {
         setFoundJob(res.data);
       })
@@ -21,7 +21,7 @@ export default function JobEdit() {
 
   function handleSubmit() {
     axios
-      .put(`http://localhost:8000/job/edit/${jobID}`, foundJob)
+      .put(`/job/edit/${jobID}`, foundJob)
       .then((response) => {
         console.log(response);
         window.location.reload();
