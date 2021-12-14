@@ -25,7 +25,7 @@ export default function JobEdit() {
       .put(`/api/job/edit/${jobID}`, foundJob)
       .then((response) => {
         console.log(response);
-        navigate(`/job/${jobID}`);
+        window.location.reload();
       })
       .catch((error) => console.log(error));
   }
