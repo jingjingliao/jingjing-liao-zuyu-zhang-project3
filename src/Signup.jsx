@@ -14,7 +14,7 @@ export default function () {
 
   function onRegister() {
     axios
-      .post("api/user/signup", userData)
+      .post("/api/user/signup", userData)
       .then((response) => setUserData(response.data), navigate("/"))
       .catch((error) => console.log(error));
   }

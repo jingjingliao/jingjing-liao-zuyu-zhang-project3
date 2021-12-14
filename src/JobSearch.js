@@ -12,7 +12,7 @@ export default function JobSearch() {
 
   function jobSearchResults() {
     axios
-      .get("api/job/find/" + jobTitle)
+      .get("/api/job/find/" + jobTitle)
       .then((response) => {
         if (response.data.length !== 0) {
           setJob(response.data);

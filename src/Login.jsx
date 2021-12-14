@@ -13,7 +13,7 @@ export default function () {
 
   function onSubmit() {
     axios
-      .post("api/user/authenticate", UserLogginIn)
+      .post("/api/user/authenticate", UserLogginIn)
       .then((response) => {
         setUserLogginIn(response.data);
         if (response.status === 200) {

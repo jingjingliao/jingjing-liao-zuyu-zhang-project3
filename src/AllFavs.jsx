@@ -11,7 +11,7 @@ export default function AllFavs() {
 
   function favSearchResults() {
     axios
-      .get("api/user/findAllFavs/" + currentUser)
+      .get("/api/user/findAllFavs/" + currentUser)
       .then((response) => {
         setJobs(response.data);
       })
