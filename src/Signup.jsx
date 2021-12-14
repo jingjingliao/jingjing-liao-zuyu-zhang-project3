@@ -17,7 +17,7 @@ export default function () {
   function onRegister() {
     axios
       .post("/api/user/signup", userData)
-      .then((response) => setUserData(response.data))
+      .then((response) => setUserData(response.data), navigate("/"))
       .catch((error) => {
         if (userData.password !== userData.validation) {
           setErrorMsg("Sign up failed. Passwords don't match");
