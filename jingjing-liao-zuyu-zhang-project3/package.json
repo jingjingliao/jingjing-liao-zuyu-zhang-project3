@@ -36,7 +36,7 @@
     "devstart": "concurrently \"nodemon ./server.js\" \"react-scripts start\"",
     "frontend-start": "react-scripts start",
     "backend-start": "node server.js",
-    "prod-start": "frontend-start & backend-start",
+    "prod-start": "npm run frontend-start && npm run backend-start",
     "start": "npm run prod-start",
     "build": "react-scripts build",
     "test": "react-scripts test",
