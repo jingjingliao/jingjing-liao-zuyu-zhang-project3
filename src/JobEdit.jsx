@@ -4,11 +4,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import FileBase64 from "react-file-base64";
-import { useNavigate } from "react-router";
 
 export default function JobEdit() {
   const [foundJob, setFoundJob] = useState({});
-  const navigate = useNavigate();
   const jobID = useParams().jobId;
 
   useEffect(() => {

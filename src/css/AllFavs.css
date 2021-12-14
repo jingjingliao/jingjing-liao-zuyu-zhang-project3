@@ -15,6 +15,10 @@
   font-size: 30px;
 }
 
+#favJobs .card-content {
+  margin-left: 10px;
+}
+
 #favJobs .card-text {
   font-size: 20px;
 }

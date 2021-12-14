@@ -23,27 +23,21 @@ export default function AllFavs() {
 
   return (
     <div class="container" id="favJobs">
-      {jobs === [] ? (
-        <div>
-          {jobs.map((job) => (
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">{job.jobTitle}</span>
-                <p class="card-text">
-                  {job.location}
-                  <p>{job.companyName}</p>
-                </p>
-                <span class="card-link">
-                  <Link to={"/job/" + job._id}>More Details</Link>
-                </span>
-              </div>
-              <img src={Image} />
-            </div>
-          ))}
+      {jobs.map((job) => (
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">{job.jobTitle}</span>
+            <p class="card-text">
+              {job.location}
+              <p>{job.companyName}</p>
+            </p>
+            <span class="card-link">
+              <Link to={"/job/" + job._id}>More Details</Link>
+            </span>
+          </div>
+          <img src={Image} />
         </div>
-      ) : (
-        <div class="noFavs">You don't have any favorite jobs!</div>
-      )}
+      ))}
     </div>
   );
 }
