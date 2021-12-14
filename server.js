@@ -28,7 +28,7 @@ mongoDB.on(
 app.use(
   session({
     secret: "SUPER_DUPER_SECRET",
-    store: MongoStore.create({ mongoUrl: mongoString }),
+    store: MongoStore.create({ mongoUrl: mongoDBEndpoint }),
   })
 );
 
