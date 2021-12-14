@@ -27,7 +27,7 @@ async function findJobByIds(ids) {
 }
 
 function deleteJobById(jobId) {
-  return JobModel.deleteOne({ jobId: jobId }).exec();
+  return JobModel.deleteOne({ _id: jobId }).exec();
 }
 
 function updateById(jobId, newJobs) {
