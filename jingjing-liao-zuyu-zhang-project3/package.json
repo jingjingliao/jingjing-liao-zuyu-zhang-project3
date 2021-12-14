@@ -34,7 +34,10 @@
   },
   "scripts": {
     "devstart": "concurrently \"nodemon ./server.js\" \"react-scripts start\"",
-    "start": "node server.js",
+    "frontend-start": "react-scripts start",
+    "backend-start": "node server.js",
+    "prod-start": "frontend-start & backend-start",
+    "start": "npm run prod-start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
