@@ -25,9 +25,6 @@ router.post("/authenticate", (request, response) => {
   }
   return UserAccessor.findUserByUsername(username).then((userResponse) => {
     if (!userResponse) {
-      alert(
-        "No account found with this username & password combination. Please check again or click on link below to register."
-      );
       return response.status(404).send("No user found with this username");
     }
     if (userResponse.password === password) {

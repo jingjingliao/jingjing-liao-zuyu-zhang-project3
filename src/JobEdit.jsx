@@ -24,7 +24,7 @@ export default function JobEdit() {
       .put(`/job/edit/${jobID}`, foundJob)
       .then((response) => {
         console.log(response);
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => console.log(error));
   }
